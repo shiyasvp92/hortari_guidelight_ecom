@@ -3,9 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstState: 'Hello world',
+      cartCount: 0,
+      alertOnCartCount: 10
+    }
+  }
 
   componentDidMount() {
-    console.log('successfully mount')
+    
+  }
+
+  addCount() {
+    const newCount = this.state.cartCount + 1;
+    this.setState({
+      cartCount: newCount
+    })
   }
 
   render() {
@@ -13,8 +28,9 @@ class App extends React.Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
           <a className="navbar-brand" href="#">Navbar</a>
+          {this.state.firstState}
           <button className="right" type="button">
-            Cart
+            Cart ({this.state.cartCount})
         </button>
         </nav>
         <div className="container">
@@ -23,7 +39,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-4 col-lg-3 col-sm-12">
-              <div className="card mb-3" style={{"maxWidth": "540px", "color": "red"}}>
+              <div className="card mb-3" style={{ "maxWidth": "540px", "color": "red" }}>
                 <div className="row no-gutters">
                   <div className="col-md-4">
                     <img src="https://via.placeholder.com/150" className="card-img" width="100%" height="100%" />
@@ -32,7 +48,14 @@ class App extends React.Component {
                     <div className="card-body">
                       <h5 className="card-title" id="#first-title">Product title</h5>
                       <div>
-                        <button className="btn btn-primary add-btn">add</button>
+                        <button
+                          className="btn btn-primary add-btn"
+                          onClick={() => {
+                            this.addCount()
+                          }}
+                        >
+                          add
+                          </button>
                       </div>
                     </div>
                   </div>
@@ -41,7 +64,11 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row d-flex justify-content-end">
-            <button className="btn btn-primary" id="checkout-btn">Checkout</button>
+            <button className="btn btn-primary" id="checkout-btn" onClick={() => {
+              this.setState({
+                firstState: 'Hurray'
+              })
+            }}>Checkout</button>
           </div>
         </div>
       </div>
