@@ -1,19 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import productTile from './components/productTile';
+
+const products = [
+  {
+    "id": 1,
+    "title": "Oneplus 7",
+    "price": "Rs 30000",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "title": "Gopro Hero",
+    "price": "Rs 23000",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "title": "MacBook",
+    "price": "Rs 130000",
+    "image": "https://via.placeholder.com/150"
+  }
+]
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstState: 'Hello world',
       cartCount: 0,
-      alertOnCartCount: 10
+      alertOnCartCount: 10,
+      products: []
     }
-  }
-
-  componentDidMount() {
-    
   }
 
   addCount() {
@@ -28,7 +46,6 @@ class App extends React.Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
           <a className="navbar-brand" href="#">Navbar</a>
-          {this.state.firstState}
           <button className="right" type="button">
             Cart ({this.state.cartCount})
         </button>
@@ -38,30 +55,7 @@ class App extends React.Component {
             <h2>Products</h2>
           </div>
           <div className="row">
-            <div className="col-md-4 col-lg-3 col-sm-12">
-              <div className="card mb-3" style={{ "maxWidth": "540px", "color": "red" }}>
-                <div className="row no-gutters">
-                  <div className="col-md-4">
-                    <img src="https://via.placeholder.com/150" className="card-img" width="100%" height="100%" />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h5 className="card-title" id="#first-title">Product title</h5>
-                      <div>
-                        <button
-                          className="btn btn-primary add-btn"
-                          onClick={() => {
-                            this.addCount()
-                          }}
-                        >
-                          add
-                          </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {productTile(this.addCount.bind(this))}
           </div>
           <div className="row d-flex justify-content-end">
             <button className="btn btn-primary" id="checkout-btn" onClick={() => {
