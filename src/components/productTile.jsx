@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function productTile(addToCart, product) {
+export default function productTile(addToCart, product, removeFromCart) {
     return (
         <div className="col-md-4 col-lg-3 col-sm-12" key={product.id}>
             <div className="card mb-3" style={{ "maxWidth": "540px", "color": "red" }}>
@@ -13,14 +13,28 @@ export default function productTile(addToCart, product) {
                             <h5 className="card-title" >{product.title}</h5>
                             <h5 >{product.price}</h5>
                             <div>
-                                <button
-                                    className="btn btn-primary add-btn"
-                                    onClick={() => {
-                                        addToCart(product)
-                                    }}
-                                >
-                                    add
-                            </button>
+                                {
+                                    addToCart &&
+                                    <button
+                                        className="btn btn-primary add-btn"
+                                        onClick={() => {
+                                            addToCart(product)
+                                        }}
+                                    >
+                                        add
+                                    </button>
+                                }
+                                {
+                                    removeFromCart &&
+                                    <button
+                                        className="btn btn-primary add-btn"
+                                        onClick={() => {
+                                            removeFromCart(product)
+                                        }}
+                                    >
+                                        remove
+                                    </button>
+                                }
                             </div>
                         </div>
                     </div>

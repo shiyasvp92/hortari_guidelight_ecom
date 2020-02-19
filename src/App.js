@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 import productTile from './components/productTile';
@@ -68,19 +69,21 @@ class App extends React.Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
           <a className="navbar-brand" href="#">Navbar</a>
-          <button className="right" type="button" onClick={() => {
-            this.viewCart();
-          }}>
-            Cart ({this.state.cart.length})
-          </button>
+          <Link to="/cart">
+            <button className="right" type="button" onClick={() => {
+              this.viewCart();
+            }}>
+              Cart ({this.state.cart.length})
+            </button>
+          </Link>
         </nav>
         <div className="container">
           <div className="row">
-            <h2>Products</h2>
+            <h2>Products</h2> 
           </div>
           <div className="row">
             {productsList}
-          </div>
+          </div> 
           <div className="row d-flex justify-content-end">
             <button className="btn btn-primary" id="checkout-btn" onClick={() => {
               this.setState({
